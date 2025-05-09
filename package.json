@@ -1,0 +1,103 @@
+{
+  "name": "auto-diff",
+  "version": "1.0.0",
+  "private": true,
+  "description": "a vscode plugin of auto diff",
+  "publisher": "Peter",
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/index.js",
+  "engines": {
+    "vscode": "^1.22.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "menus": {
+      "editor/title": [
+        {
+          "when": "auto-diff.available",
+          "command": "auto-diff.open",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "auto-diff.open",
+        "title": "Open Diff",
+        "icon": "$(diff)",
+        "enablement": "true"
+      }
+    ],
+    "configuration": {
+      "title": "Auto Diff",
+      "properties": {
+        "auto-diff.patterns": {
+          "type": "array",
+          "description": "Patterns for matching diff paris",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "description": "The Source"
+              },
+              "target": {
+                "type": "string",
+                "description": "The Target"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "dev": "nr build --watch --sourcemap",
+    "build": "tsup src/index.ts --external vscode",
+    "test": "vitest",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies",
+    "release": "bumpp && nr publish",
+    "prepare": "nr update",
+    "update": "vscode-ext-gen --output src/generated/meta.ts",
+    "vscode:prepublish": "nr build"
+  },
+  "keywords": [
+    "vscode",
+    "plugin",
+    "diff",
+    "typescript"
+  ],
+  "author": "Peter",
+  "license": "ISC",
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.12.0",
+    "@antfu/ni": "^24.3.0",
+    "@types/micromatch": "^4.0.9",
+    "@types/node": "^22.15.14",
+    "@types/vscode": "^1.99.1",
+    "@vscode/vsce": "^3.3.2",
+    "bumpp": "^10.1.0",
+    "eslint": "^9.25.0",
+    "esno": "^4.8.0",
+    "micromatch": "^4.0.8",
+    "pnpm": "^10.8.1",
+    "reactive-vscode": "^0.2.14",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.2",
+    "vitest": "^3.1.1",
+    "vscode-ext-gen": "^1.0.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
