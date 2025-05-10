@@ -1,6 +1,6 @@
 import { parse, resolve } from 'node:path';
 import { Uri, workspace } from 'vscode';
-import { AUTO_DIFF_CONFIG } from '../constants/settings';
+import { MASTER_DIFF_CONFIG } from '../constants/settings';
 import mm from 'micromatch';
 import { existsSync } from 'node:fs';
 import { MatchPattern, ResolvedMatchPattern } from './interface';
@@ -17,7 +17,7 @@ export function patternsNormalize(patterns: MatchPattern[]): ResolvedMatchPatter
 
 export function findMatchedTarget(source: Uri): Uri[] | undefined {
     const cwd = slash(workspace.workspaceFolders![0]!.uri.fsPath);
-    const config = AUTO_DIFF_CONFIG;
+    const config = MASTER_DIFF_CONFIG();
     const patterns = patternsNormalize(config.get<MatchPattern[]>('patterns') || []);
     const sourcePath = source.fsPath.replace(/\\/g, '/');
     

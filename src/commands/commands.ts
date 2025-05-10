@@ -1,10 +1,11 @@
 import { commands, Uri, window } from "vscode"
 import { findMatchedTarget } from "../utils/helper";
 import { basename } from "path";
+import { EXT_ID, EXT_NAME } from "../constants/settings";
 
 export const RegisterCommands = [
     {
-        name: 'auto-diff.open',
+        name: `${EXT_ID}.open`,
         behaviour: async () => {
             const uri = window.activeTextEditor?.document.uri;
             if(!uri) return;
@@ -25,7 +26,7 @@ export const RegisterCommands = [
                 if(result?.tag) target = result.tag;
             }
 
-            if(target) commands.executeCommand('vscode.diff', uri, target, `Auto Diff: ${basename(uri.fsPath)} <-> ${basename(target.fsPath)}`);
+            if(target) commands.executeCommand('vscode.diff', uri, target, `${EXT_NAME}: ${basename(uri.fsPath)} <-> ${basename(target.fsPath)}`);
         }
     }
 ]

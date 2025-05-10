@@ -1,5 +1,5 @@
 {
-    "auto-diff.patterns": [
+    "master-diff.patterns": [
       {
         "source":  "./test/fixtures/index.ts",
         "target": "./test/fixtures/__output__/<basename>.<ext>" 

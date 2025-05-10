@@ -1,8 +1,8 @@
 {
-  "name": "auto-diff",
+  "name": "master-diff",
   "version": "1.0.0",
   "private": true,
-  "description": "a vscode plugin of auto diff",
+  "description": "a vscode plugin of diff",
   "publisher": "Peter",
   "categories": [
     "Other"
@@ -18,24 +18,24 @@
     "menus": {
       "editor/title": [
         {
-          "when": "auto-diff.available",
-          "command": "auto-diff.open",
+          "when": "master-diff.available",
+          "command": "master-diff.open",
           "group": "navigation"
         }
       ]
     },
     "commands": [
       {
-        "command": "auto-diff.open",
+        "command": "master-diff.open",
         "title": "Open Diff",
         "icon": "$(diff)",
         "enablement": "true"
       }
     ],
     "configuration": {
-      "title": "Auto Diff",
+      "title": "Master Diff",
       "properties": {
-        "auto-diff.patterns": {
+        "master-diff.patterns": {
           "type": "array",
           "description": "Patterns for matching diff paris",
           "items": {
