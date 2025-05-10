@@ -1,6 +1,6 @@
 {
   "name": "master-diff",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "a vscode plugin of diff",
   "publisher": "Peter",
